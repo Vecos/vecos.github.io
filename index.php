@@ -122,48 +122,7 @@
 									
 								</ul>
 				
-<?php
 
-if(!isset($_POST['komentar'])){
-    echo '<form method="post" action="index.php#komentare" class="cta">
-							<div class="row gtr-uniform gtr-50">
-								<div class="col-8 col-12-xsmall"><input type="text" name="jmeno" id="jmeno" placeholder="Vaše meno"  required/></div>
-								<div class="col-4 col-12-xsmall"><input type="submit" value="Uložiť" class="fit primary" required/></div>
-								<div class="col-8 col-12"><input type="text" name="komentar" id="komentar" placeholder="Komentár" /></div>
-								
-							</div>
-						</form>';
-}else{
-    $jmeno = $_POST['jmeno'];
-    $komentar = $_POST['komentar'];
-    //echo 'jmeno:'.$jmeno.' komentar: '.$komentar.' přeneseno.';
-    $pripojeni = mysqli_connect('localhost', '240918', '123345667899aA', '240918');
-    if (!$pripojeni) die("Nepodarilo sa pripojiť k DB servera: " . mysqli_connect_error());
-    $dotaz = "INSERT into komentare (jmeno, komentar) values ('".$jmeno."', '".$komentar."')";
-    mysqli_query($pripojeni, $dotaz);
-    echo 'Komentar uložený';
-}
-$pripojeni = mysqli_connect('localhost', '240918', '123345667899aA', '240918');
-    if (!$pripojeni) die("Nepodarilo se pripojiť k DB servera: " . mysqli_connect_error());
-    $dotaz = "SELECT * FROM komentare";
-    $data = mysqli_query($pripojeni, $dotaz);
-    echo '<h3><p>Výpis komentárov:</h3></p>
-					<p><table>
-					    <tr>
-							<td><h3>Meno</h3></td> <td><h3>Komentar</h3></td> <td><h3>Dátum</h3></td>
-						  </tr>';
-					
-					while ($row= mysqli_fetch_array($data, MYSQLI_ASSOC)){
-					    echo "<tr>";
-						echo "<td>".$row['jmeno']."</td>";
-						echo "<td>".$row['komentar']."</td>";
-						echo "<td>".$row['datum']."</td>";
-						echo "</tr>";
-					}
-					
-					echo "</table></p>";
-					
-?>
 
 					
 							</article>
